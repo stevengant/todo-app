@@ -22,6 +22,8 @@
 
 #### How do you run tests?
 - ` npm run test`
+#### What tests are failing?
+- It looks like all tests are currently failing
 
 #### UML
 
