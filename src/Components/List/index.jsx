@@ -6,8 +6,8 @@ import { Pagination } from '@mantine/core';
 const List = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1);
-  // TODO need to add sort
-  const { pageItems, showCompleted } = useContext(SettingsContext);
+
+  const { pageItems, showCompleted, sort } = useContext(SettingsContext);
 
   const totalPages = Math.ceil(props.list.length / pageItems);
 
