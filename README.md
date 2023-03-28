@@ -10,7 +10,7 @@
 
 ### Links and Resources
 
-- [GitHub Actions ci/cd]() 
+- [GitHub Actions ci/cd](https://github.com/stevengant/todo-app/actions) 
 
 - [front-end application]()
 

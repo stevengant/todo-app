@@ -19,11 +19,11 @@ const Todo = () => {
     console.log(item);
     setList([...list, item]);
   }
-
-  function deleteItem(id) {
-    const items = list.filter( item => item.id !== id );
-    setList(items);
-  }
+  // TODO need to uncomment deleteItem function
+  // function deleteItem(id) {
+  //   const items = list.filter( item => item.id !== id );
+  //   setList(items);
+  // }
 
   function toggleComplete(id) {
 
