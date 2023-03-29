@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colors.gray[0],
     width: '80%',
     margin: 'auto',
-    fontSize: theme.fontSizes.lg,
+    fontSize: theme.fontSizes.md,
     padding: theme.spacing.md,
     marginTop: theme.spacing.md,
     marginBottom: theme.spacing.md
