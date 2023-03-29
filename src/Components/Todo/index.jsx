@@ -50,7 +50,6 @@ const Todo = () => {
     });
 
     setList(items);
-
   }
 
   useEffect(() => {
@@ -65,6 +64,7 @@ const Todo = () => {
   return (
     <>
       <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
+      
       <Grid style={{width: '80%', margin: 'auto'}}>
         <Grid.Col xs={12} sm={4}>
           <form onSubmit={handleSubmit}>
