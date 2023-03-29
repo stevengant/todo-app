@@ -3,9 +3,24 @@ import useForm from '../../hooks/form';
 
 import { v4 as uuid } from 'uuid';
 import List from '../List';
+import { createStyles, Grid } from '@mantine/core';
+
+const useStyles = createStyles((theme) => ({
+  h1: {
+    backgroundColor: theme.colors.gray[8],
+    color: theme.colors.gray[0],
+    width: '80%',
+    margin: 'auto',
+    fontSize: theme.fontSizes.lg,
+    padding: theme.spacing.md,
+    marginTop: theme.spacing.md,
+    marginBottom: theme.spacing.md
+  }
+}));
 
 const Todo = () => {
 
+  const { classes } = useStyles();
   const [defaultValues] = useState({
     difficulty: 4,
   });
@@ -19,17 +34,17 @@ const Todo = () => {
     console.log(item);
     setList([...list, item]);
   }
-  // TODO need to uncomment deleteItem function
-  // function deleteItem(id) {
-  //   const items = list.filter( item => item.id !== id );
-  //   setList(items);
-  // }
+
+  function deleteItem(id) {
+    const items = list.filter(item => item.id !== id);
+    setList(items);
+  }
 
   function toggleComplete(id) {
 
-    const items = list.map( item => {
-      if ( item.id === id ) {
-        item.complete = ! item.complete;
+    const items = list.map(item => {
+      if (item.id === id) {
+        item.complete = !item.complete;
       }
       return item;
     });
@@ -45,53 +60,42 @@ const Todo = () => {
     // linter will want 'incomplete' added to dependency array unnecessarily. 
     // disable code used to avoid linter warning 
     // eslint-disable-next-line react-hooks/exhaustive-deps 
-  }, [list]);  
+  }, [list]);
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
+      <Grid style={{width: '80%', margin: 'auto'}}>
+        <Grid.Col xs={12} sm={4}>
+          <form onSubmit={handleSubmit}>
 
-      <form onSubmit={handleSubmit}>
+            <h2>Add To Do Item</h2>
 
-        <h2>Add To Do Item</h2>
+            <label>
+              <span>To Do Item</span>
+              <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
+            </label>
 
-        <label>
-          <span>To Do Item</span>
-          <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-        </label>
+            <label>
+              <span>Assigned To</span>
+              <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
+            </label>
 
-        <label>
-          <span>Assigned To</span>
-          <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-        </label>
+            <label>
+              <span>Difficulty</span>
+              <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
+            </label>
 
-        <label>
-          <span>Difficulty</span>
-          <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-        </label>
+            <label>
+              <button type="submit">Add Item</button>
+            </label>
+          </form>
+        </Grid.Col>
 
-        <label>
-          <button type="submit">Add Item</button>
-        </label>
-      </form>
-
-      <List 
-        list={ list }
-        toggleComplete={ toggleComplete }
-      />
-
-      {/* {list.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
-      ))} */}
-
+        <Grid.Col xs={12} sm={8}>
+          <List list={list} toggleComplete={toggleComplete} />
+        </Grid.Col>
+      </Grid>
     </>
   );
 };
