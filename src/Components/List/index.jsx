@@ -4,7 +4,6 @@ import { Pagination } from '@mantine/core';
 
 
 const List = (props) => {
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const { pageItems, showCompleted, sort } = useContext(SettingsContext);
@@ -18,11 +17,11 @@ const List = (props) => {
 
   const firstItem = (currentPage - 1) * pageItems;
   const lastItem = currentPage * pageItems;
-  const finalDisplayItems = displayItems.slice(firstItem, lastItem);
+  const listItems = displayItems.slice(firstItem, lastItem);
 
   return (
     <>
-      {finalDisplayItems.map(item => (
+      {listItems.map(item => (
         <div key={item.id}>
           <p>{item.text}</p>
           <p><small>Assigned to: {item.assignee}</small></p>
