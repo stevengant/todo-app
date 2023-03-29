@@ -3,7 +3,7 @@ import React from 'react';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 import Todo from './Components/Todo';
-import Settings from './Components/Settings';
+import Settings from './Components/SettingsForm';
 import { Routes, Route } from 'react-router-dom';
 
 

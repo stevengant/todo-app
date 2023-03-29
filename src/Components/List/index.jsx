@@ -1,18 +1,19 @@
 import { useContext, useState } from "react";
 import { SettingsContext } from "../../Context/Settings";
-import { Pagination } from '@mantine/core';
+import { Card, CloseButton, Group, Pagination, Text, Badge } from '@mantine/core';
 
 
-const List = (props) => {
+const List = ({ list, toggleComplete, deleteItem }) => {
+  const { pageItems, showCompleted } = useContext(SettingsContext);
+
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { pageItems, showCompleted, sort } = useContext(SettingsContext);
 
-  const totalPages = Math.ceil(props.list.length / pageItems);
+  const totalPages = Math.ceil(list.length / pageItems);
 
-  const displayItems = showCompleted 
-    ? props.list
-    : props.list.filter((item) => !item.complete);
+  const displayItems = showCompleted
+    ? list
+    : list.filter((item) => !item.complete);
 
 
   const firstItem = (currentPage - 1) * pageItems;
@@ -22,13 +23,36 @@ const List = (props) => {
   return (
     <>
       {listItems.map(item => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-          <p><small>Assigned to: {item.assignee}</small></p>
-          <p><small>Difficulty: {item.difficulty}</small></p>
-          <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
-          <hr />
-        </div>
+        <Card withBorder shadow="md" key={item.id} mb="sm">
+          <Card.Section withBorder>
+            <Group position="apart">
+              <Group>
+                <Badge
+                  onClick={() => toggleComplete(item.id)}
+                  color={item.complete ? 'red' : 'green'}
+                  variant="filled"
+                  m="3px"
+                >
+                  {item.complete ? 'Complete' : 'Pending'}
+                </Badge>
+                <Text>{item.assignee}</Text>
+              </Group>
+              <CloseButton
+                onClick={() => deleteItem(item.id)}
+                title="Close Todo Item"
+              />
+            </Group>
+          </Card.Section>
+          <Text mt="sm">{item.text}</Text>
+          <Text align="right">Difficulty: {item.difficulty}</Text>
+        </Card>
+        //   <div key={item.id}>
+        //   <p>{item.text}</p>
+        //   <p><small>Assigned to: {item.assignee}</small></p>
+        //   <p><small>Difficulty: {item.difficulty}</small></p>
+        //   <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+        //   <hr />
+        // </div>
       ))}
 
       <Pagination
