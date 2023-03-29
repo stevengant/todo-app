@@ -4,7 +4,7 @@ export const SettingsContext = React.createContext();
 
 const SettingsProvider = ({ children }) => {
   const [pageItems, setPageItems] = useState(3);
-  const [showCompleted, setShowCompleted] = useState(false);
+  const [showCompleted, setShowCompleted] = useState(true);
   const [sort, setSort] = useState('difficulty');
 
   const saveLocalStorage = () => {
