@@ -63,7 +63,10 @@ const Todo = () => {
 
   return (
     <>
-      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
+
+      <header data-testid="todo-header">
+        <h1 className={classes.h1} data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
+      </header>
       
       <Grid style={{width: '80%', margin: 'auto'}}>
         <Grid.Col xs={12} sm={4}>
