@@ -71,9 +71,8 @@ const Settings = (props) => {
             </label>
             </Card>
           </form>
-          
         </Grid.Col>
-        
+
         <Grid.Col xs={12} sm={8}>
           <div className="updated-settings">
             <h2 className="form-h2">Updated Settings</h2>
