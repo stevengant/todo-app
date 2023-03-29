@@ -40,35 +40,35 @@ const Settings = (props) => {
       <Grid style={{ width: '80%', margin: 'auto' }}>
         <Grid.Col xs={12} sm={4}>
           <form className="form-container" onSubmit={handleSubmit}>
-          <Card withBorder>
-            <h2 className="form-h2">Update Settings</h2>
+            <Card withBorder>
+              <h2 className="form-h2">Update Settings</h2>
 
-            <Switch
-              className="switch"
-              label="Show Completed ToDos"
-              checked={showCompleted}
-              onChange={(e) => setShowCompleted(e.currentTarget.checked)}
-            />
-
-            <NumberInput
-              className="number"
-              defaultValue={3}
-              label="Items Per Page"
-              value={pageItems}
-              onChange={(value) => setPageItems(parseInt(value))} />
-
-            <label className="sort">
-              <TextInput
-                placeholder='Keyword'
-                label='Sort Keyword'
-                name="text"
-                onChange={(e) => setSort(e.target.value)}
+              <Switch
+                className="switch"
+                label="Show Completed ToDos"
+                checked={showCompleted}
+                onChange={(e) => setShowCompleted(e.currentTarget.checked)}
               />
-            </label>
 
-            <label className="submit-button">
-              <Button mt="sm" type="submit">Show New Settings</Button>
-            </label>
+              <NumberInput
+                className="number"
+                defaultValue={3}
+                label="Items Per Page"
+                value={pageItems}
+                onChange={(value) => setPageItems(parseInt(value))} />
+
+              <label className="sort">
+                <TextInput
+                  placeholder='Keyword'
+                  label='Sort Keyword'
+                  name="text"
+                  onChange={(e) => setSort(e.target.value)}
+                />
+              </label>
+
+              <label className="submit-button">
+                <Button mt="sm" type="submit">Show New Settings</Button>
+              </label>
             </Card>
           </form>
         </Grid.Col>
