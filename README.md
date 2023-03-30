@@ -15,8 +15,8 @@
 - [GitHub PR - Lab32](https://github.com/stevengant/todo-app/pull/4) 
 - [CodeSandbox - Lab32](https://codesandbox.io/p/github/stevengant/todo-app/context-methods?workspaceId=8be27d1e-468c-4d8f-a4af-75875ccb2c76)
 
-- [GitHub PR - Lab33](https://github.com/stevengant/todo-app/pull/4) 
-- [CodeSandbox - Lab33]()
+- [GitHub PR - Lab33](https://github.com/stevengant/todo-app/pull/6) 
+- [CodeSandbox - Lab33](https://codesandbox.io/p/github/stevengant/todo-app/lab33?workspaceId=8be27d1e-468c-4d8f-a4af-75875ccb2c76&file=%2FREADME.md)
 
 ### Setup
 
