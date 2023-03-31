@@ -1,11 +1,11 @@
-import { createStyles, Group, Header, Navbar, rem } from "@mantine/core";
+import { createStyles, Group, Header, Navbar } from "@mantine/core";
 import { Link } from "react-router-dom";
 import Login from '../../Components/Login';
 
 const useStyles = createStyles((theme) => ({
   navbar: {
     backgroundColor: theme.colors.blue[7],
-    height: rem(56),
+    height: '100%',
     width: '100%',
     margin: 'auto',
     padding: theme.spacing.md,

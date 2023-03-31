@@ -30,21 +30,21 @@ const Todo = () => {
   const { handleChange, handleSubmit } = useForm(addItem, defaultValues);
 
   function addItem(item) {
-    item.id = uuid();
+    item._id = uuid();
     item.complete = false;
     console.log(item);
     setList([...list, item]);
   }
 
-  function deleteItem(id) {
-    const items = list.filter(item => item.id !== id);
+  function deleteItem(_id) {
+    const items = list.filter(item => item._id !== _id);
     setList(items);
   }
 
-  function toggleComplete(id) {
+  function toggleComplete(_id) {
 
     const items = list.map(item => {
-      if (item.id === id) {
+      if (item._id === _id) {
         item.complete = !item.complete;
       }
       return item;
@@ -69,7 +69,7 @@ const Todo = () => {
 
 
       <Grid style={{ width: '80%', margin: 'auto' }}>
-        
+      <Auth capability="create">
         <Grid.Col xs={12} sm={4}>
 
           <Card withBorder>
@@ -105,7 +105,7 @@ const Todo = () => {
           </Card>
   
         </Grid.Col>
-        
+        </Auth>
         <Grid.Col xs={12} sm={8}>
           <List
             list={list}
