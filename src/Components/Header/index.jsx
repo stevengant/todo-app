@@ -1,4 +1,4 @@
-import { createStyles, Flex, Group, Header, Navbar, rem } from "@mantine/core";
+import { createStyles, Group, Header, Navbar, rem } from "@mantine/core";
 import { Link } from "react-router-dom";
 import Login from '../../Components/Login';
 
@@ -25,22 +25,15 @@ const HeaderComponent = (props) => {
 
   return (
     <Header>
-      <Group>
       <Navbar className={classes.navbar}>
-        <Flex
-          display="flex"
-          justify="flex-start"
-          align="flex-start"
-          direction="row"
-        >
-        
-          <Link to='/' default className={classes.link}>Home</Link>
-          <Link to='/settings' className={classes.link}>Settings</Link>
+        <Group position="apart">
+          <Group>
+            <Link to='/' default className={classes.link}>Home</Link>
+            <Link to='/settings' className={classes.link}>Settings</Link>
+          </Group>
           <Login />
-        </Flex>
-        
+        </Group>
       </Navbar>
-      </Group>
     </Header>
   )
 };

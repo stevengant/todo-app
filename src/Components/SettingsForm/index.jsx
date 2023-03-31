@@ -1,7 +1,8 @@
-import { useContext } from "react";
-import { Card, createStyles, Grid, Switch, NumberInput, TextInput, Button } from '@mantine/core';
-import { IconSettings } from "@tabler/icons-react";
-import { SettingsContext } from "../../Context/Settings";
+import { IconSettings } from '@tabler/icons-react';
+import { Button, Card, createStyles, Grid, NumberInput, Switch, Text, TextInput } from '@mantine/core';
+import { useContext, useState } from 'react';
+import { SettingsContext } from '../../Context/Settings';
+import { When } from 'react-if';
 
 const useStyles = createStyles((theme) => ({
   h1: {
@@ -16,14 +17,15 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-const Settings = (props) => {
+const SettingsForm = () => {
+  const [show, setShow] = useState(false);
   const { classes } = useStyles();
   const {
-    pageItems,
+    displayCount,
     showCompleted,
     sort,
     setSort,
-    setPageItems,
+    setDisplayCount,
     setShowCompleted,
     saveLocalStorage
   } = useContext(SettingsContext);
@@ -31,55 +33,48 @@ const Settings = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShow(true);
     saveLocalStorage();
   };
 
   return (
     <>
-      <h1 className={classes.h1}><IconSettings />Manage Settings</h1>
+      <h1 className={classes.h1}><IconSettings /> Manage Settings</h1>
       <Grid style={{ width: '80%', margin: 'auto' }}>
-        <Grid.Col xs={12} sm={4}>
-          <form className="form-container" onSubmit={handleSubmit}>
-            <Card withBorder>
-              <h2 className="form-h2">Update Settings</h2>
-
+        <Grid.Col xs={12} sm={6}>
+          <Card withBorder>
+            <form onSubmit={handleSubmit}>
+              <Text m="xl" fontSize="xl" weight="bold">Updated Settings</Text>
               <Switch
-                className="switch"
-                label="Show Completed ToDos"
+                label="SHow Completed Todos"
                 checked={showCompleted}
-                onChange={(e) => setShowCompleted(e.currentTarget.checked)}
+                onChange={(event) => setShowCompleted(event.currentTarget.checked)}
               />
-
               <NumberInput
-                className="number"
-                defaultValue={3}
+                placeholder={displayCount}
                 label="Items Per Page"
-                value={pageItems}
-                onChange={(value) => setPageItems(parseInt(value))} />
-
-              <label className="sort">
-                <TextInput
-                  placeholder='Keyword'
-                  label='Sort Keyword'
-                  name="text"
-                  onChange={(e) => setSort(e.target.value)}
-                />
-              </label>
-
-              <label className="submit-button">
-                <Button mt="sm" type="submit">Show New Settings</Button>
-              </label>
-            </Card>
-          </form>
+                onChange={(value) => setDisplayCount(value)}
+              />
+              <TextInput
+                placeholder={sort}
+                label="Sort Keyword"
+                onChange={(e) => setSort(e.target.value)}
+              />
+              <Button type="submit">Save New Settings</Button>
+            </form>
+          </Card>
         </Grid.Col>
-
-        <Grid.Col xs={12} sm={8}>
-          <div className="updated-settings">
-            <h2 className="form-h2">Updated Settings</h2>
-            <p>{showCompleted ? 'Show Completed ToDos' : 'Hide Completed ToDos'}</p>
-            <p>{`Items Per Page: ${pageItems}`}</p>
-            <p>{`Sort Keyword: ${sort}`}</p>
-          </div>
+        <Grid.Col xs={12} sm={6}>
+          <When condition={show}>
+            <Card withBorder>
+              <Card.Section>
+                <Text m="xl" fontSize="xl" weight="bold">Updated Settings</Text>
+              </Card.Section>
+              <Text m="sm">{showCompleted ? 'Show' : 'Hide'} Completed ToDos</Text>
+              <Text m="sm">Items Per page: {displayCount}</Text>
+              <Text m="sm">Sort Keyword: {sort}</Text>
+            </Card>
+          </When>
         </Grid.Col>
 
       </Grid>
@@ -88,4 +83,4 @@ const Settings = (props) => {
 
 }
 
-export default Settings;
+export default SettingsForm;

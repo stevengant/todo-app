@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import List from '../List';
 import useForm from '../../hooks/form';
-
+import Auth from '../Auth';
 import { v4 as uuid } from 'uuid';
 import { Button, Card, createStyles, Grid, Slider, Text, TextInput } from '@mantine/core';
 
@@ -64,13 +64,14 @@ const Todo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
+
         <h1 className={classes.h1} data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
+
 
       <Grid style={{ width: '80%', margin: 'auto' }}>
         
         <Grid.Col xs={12} sm={4}>
+
           <Card withBorder>
             <form onSubmit={handleSubmit}>
             
@@ -101,7 +102,8 @@ const Todo = () => {
               <Button mt="sm" type="submit">Add Item</Button>
               
             </form>
-          </Card>      
+          </Card>
+  
         </Grid.Col>
         
         <Grid.Col xs={12} sm={8}>
