@@ -12,7 +12,6 @@ const List = ({ list, toggleComplete, deleteItem }) => {
   const { isLoggedIn, can } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
 
-
   const totalPages = Math.ceil(list.length / pageItems);
 
   const displayItems = showCompleted
@@ -26,14 +25,14 @@ const List = ({ list, toggleComplete, deleteItem }) => {
   return (
     <>
       {displayList.map((item, idx) => (
-        <Card withBorder shadow="md" key={item.id} mb="sm">
+        <Card withBorder shadow="md" key={item._id} mb="sm">
           <Card.Section withBorder>
             <Group position="apart">
               <Group>
                 <If condition={isLoggedIn && can('update')}>
                   <Then>
                     <Badge
-                      onClick={() => toggleComplete(item.id)}
+                      onClick={() => toggleComplete(item._id)}
                       color={item.complete ? 'red' : 'green'}
                       variant="filled"
                       m="3px"
@@ -52,18 +51,21 @@ const List = ({ list, toggleComplete, deleteItem }) => {
                   </Else>
                 </If>
 
-                <Text data-testid={`item-assignee-${idx}`}>{item.assignee}</Text>
+
+                <Text data-testid={`item-assignee-${idx}`}>Assigned to: {item.assignee}</Text>
               </Group>
-              <Auth capability="delete">
+                <Auth capability="delete">
                 <CloseButton
-                  onClick={() => deleteItem(item.id)}
+                  onClick={() => deleteItem(item._id)}
                   title="Close Todo Item"
                 />
               </Auth>
             </Group>
           </Card.Section>
+
           <Text data-testid={`item-text-${idx}`} mt="sm">{item.text}</Text>
           <Text data-testid={`item-difficulty-${idx}`} align="right">Difficulty: {item.difficulty}</Text>
+
         </Card>
 
       ))}

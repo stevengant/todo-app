@@ -21,7 +21,7 @@ const SettingsForm = () => {
   const [show, setShow] = useState(false);
   const { classes } = useStyles();
   const {
-    displayCount,
+    pageItems,
     showCompleted,
     sort,
     setSort,
@@ -41,19 +41,21 @@ const SettingsForm = () => {
     <>
       <h1 className={classes.h1}><IconSettings /> Manage Settings</h1>
       <Grid style={{ width: '80%', margin: 'auto' }}>
-        <Grid.Col xs={12} sm={6}>
+        <Grid.Col xs={12} sm={4}>
           <Card withBorder>
             <form onSubmit={handleSubmit}>
               <Text m="xl" fontSize="xl" weight="bold">Updated Settings</Text>
               <Switch
-                label="SHow Completed Todos"
+                label="Show Completed Todos"
                 checked={showCompleted}
                 onChange={(event) => setShowCompleted(event.currentTarget.checked)}
               />
               <NumberInput
-                placeholder={displayCount}
+                placeholder={pageItems}
                 label="Items Per Page"
+                value={pageItems}
                 onChange={(value) => setDisplayCount(value)}
+                name={pageItems}
               />
               <TextInput
                 placeholder={sort}
@@ -71,7 +73,7 @@ const SettingsForm = () => {
                 <Text m="xl" fontSize="xl" weight="bold">Updated Settings</Text>
               </Card.Section>
               <Text m="sm">{showCompleted ? 'Show' : 'Hide'} Completed ToDos</Text>
-              <Text m="sm">Items Per page: {displayCount}</Text>
+              <Text m="sm">Items Per page: {pageItems}</Text>
               <Text m="sm">Sort Keyword: {sort}</Text>
             </Card>
           </When>
